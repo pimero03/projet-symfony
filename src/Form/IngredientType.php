@@ -16,10 +16,10 @@ class IngredientType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('type',ChoiceType::class, [
+            ->add('type', ChoiceType::class, [
                 'choices'  => [
                     'liquide' => 'liquide',
-                    'solde' => 'solde',
+                    'solide' => 'solide',
                     'piece' => 'piece',
                 ],
             ])

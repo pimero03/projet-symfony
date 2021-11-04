@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\IngredientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Recette;
 
 /**
  * @ORM\Entity(repositoryClass=IngredientRepository::class)
@@ -23,14 +26,24 @@ class Ingredient
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", columnDefinition="enum('liquide', 'solide', 'piece')")
      */
     private $type;
 
     /**
-     * @ORM\Column(type="string", columnDefinition="enum('liquide', 'solde', 'piece')")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $imageName;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Recette::class, mappedBy="ingredient")
+     */
+    private $recettes;
+
+    public function __construct()
+    {
+        $this->recettes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +82,33 @@ class Ingredient
     public function setImageName(?string $imageName): self
     {
         $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Recette[]
+     */
+    public function getRecettes(): Collection
+    {
+        return $this->recettes;
+    }
+
+    public function addRecette(Recette $recette): self
+    {
+        if (!$this->recettes->contains($recette)) {
+            $this->recettes[] = $recette;
+            $recette->addIngredient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecette(Recette $recette): self
+    {
+        if ($this->recettes->removeElement($recette)) {
+            $recette->removeIngredient($this);
+        }
 
         return $this;
     }
