@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400");
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background: #ecf0f1;
+}
+
+.container {
+  height: 500px;
+  width: 500px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.recipe-card {
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  position: absolute;
+  left: 25%;
+  top: 5%;
+  width: 50%;
+}
+.recipe-card .header {
+  background-size: cover;
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.recipe-card .header .edit {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  bottom: 13%;
+  left: 10%;
+  border-radius: 50%;
+  background: #1abc9c;
+  border: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: all 0.5s ease-in;
+  cursor: pointer;
+  z-index: 3;
+}
+.recipe-card .header .edit:hover {
+  background: #16a085;
+}
+.recipe-card .header .edit:focus {
+  outline: 0;
+}
+.recipe-card .header .delete {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  border-radius: 0%;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: all 0.5s ease-in;
+  cursor: pointer;
+  z-index: 3;
+}
+.recipe-card .header .delete:hover {
+  background: #e74c3c;
+}
+.recipe-card .header .delete:focus {
+  outline: 0;
+}
+.recipe-card .header:after {
+  height: 100%;
+  width: 130%;
+  background: #fff;
+  content: "";
+  position: absolute;
+  top: 85%;
+  left: -15%;
+  transform: rotate(10deg);
+  box-shadow: 0 -9px 0 #1abc9c;
+}
+.recipe-card .body {
+  padding: 15px 15px 25px 15px;
+}
+.recipe-card .body .title {
+  background: transparent;
+  border-bottom: 1px solid #16a085;
+  color: #16a085;
+  display: block;
+  margin: 0;
+  margin-bottom: 5px;
+  font-family: "Raleway", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  padding: 0 0 5px 0;
+  text-decoration: none;
+}
+.recipe-card .body h3 {
+  color: #27ae60;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 0;
+  text-align: right;
+}
+.recipe-card .body ul.ingredients {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.recipe-card .body ul.ingredients li {
+  color: #7f8c8d;
+  font-size: 1rem;
+  font-family: "Raleway", sans-serif;
+}
+.recipe-card .body ul.ingredients li .fa {
+  color: #1abc9c;
+  margin-right: 0.5rem;
+  margin-bottom: 0.8rem;
+}

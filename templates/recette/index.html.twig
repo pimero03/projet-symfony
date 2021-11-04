@@ -1,39 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recette index{% endblock %}
+{% block title %}Recettes{% endblock %}
 
 {% block body %}
-    <h1>Recette index</h1>
+    <h1>Recettes</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Preparation_time</th>
-                <th>Cuisson_time</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for recette in recettes %}
-            <tr>
-                <td>{{ recette.id }}</td>
-                <td>{{ recette.name }}</td>
-                <td>{{ recette.preparationTime ? recette.preparationTime|date('H:i:s') : '' }}</td>
-                <td>{{ recette.cuissonTime ? recette.cuissonTime|date('H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('recette_show', {'id': recette.id}) }}">show</a>
-                    <a href="{{ path('recette_edit', {'id': recette.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% for recette in recettes %}
+       {# <div class="ft-recipe"> 
+            <div class="ft-recipe__thumb"><span id="close-modal"><i class="ion ion-md-close"></i></span>
+                <h3>{{ recette.name }}</h3><img src="https://zippypaws.com/app/uploads/2018/05/strawberry-waffles-1024x668.jpg" alt="{{ recette.name }}"/>
+            </div>
+            <div class="ft-recipe__content">
+                <header class="content__header">
+                <div class="row-wrapper">
+                    <h2 class="recipe-title">{{ recette.name }}</h2>
+                    <div class="user-rating"></div>
+                </div>
+                <ul class="recipe-details">
+                    <li class="recipe-details-item time"><i class="ion ion-ios-clock-outline"></i><span class="value">20</span><span class="title">Minutes</span></li>
+                    <li class="recipe-details-item ingredients"><i class="ion ion-ios-book-outline"></i><span class="value">5</span><span class="title">Ingredients</span></li>
+                    <li class="recipe-details-item servings"><i class="ion ion-ios-person-outline"></i><span class="value">4-6</span><span class="title">Serving</span></li>
+                </ul>
+                </header>
+                <p class="description">
+                There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries...</p>
+                <footer class="content__footer"><a href="{{ path('recette_show', {'id': recette.id}) }}">Détails</a></footer>
+            </div>
+        </div> #}
 
-    <a href="{{ path('recette_new') }}">Create new</a>
+
+        <div class="container">
+            <div class="recipe-card">
+                <div class="header">
+                <button class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                <button class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                </div>
+                <div class="body"><a class="title" href="#">{{ recette.name }}</a>
+                <h3>Ingredients</h3>
+                <ul class="ingredients">
+                    <li> <i class="fa fa-shopping-cart" aria-hidden="true"> </i>Sushi Rice</li>
+                    <li> <i class="fa fa-shopping-cart" aria-hidden="true"> </i>Heavy mayonnaise</li>
+                    <li> <i class="fa fa-shopping-cart" aria-hidden="true"> </i>Crab sticks</li>
+                    <li><i class="fa fa-shopping-cart" aria-hidden="true"> </i>Sesame seeds.</li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="card card-block">
+            <p class="card-text">Pas de recette ajouté !!</p>
+        </div>
+    {% endfor %}
+
+    <a href="{{ path('recette_new') }}">Ajouter une recette</a>
 {% endblock %}
