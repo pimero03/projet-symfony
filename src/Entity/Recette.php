@@ -25,12 +25,12 @@ class Recette
     private $name;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="string", columnDefinition="enum('5-10min', '10-20min', '20-30min', '30min-1h', '1-2h', '2-3h', 'plus')")
      */
     private $preparation_time;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="string", columnDefinition="enum('5-10min', '10-20min', '20-30min', '30min-1h', '1-2h', '2-3h', 'plus')")
      */
     private $cuisson_time;
 
@@ -61,24 +61,24 @@ class Recette
         return $this;
     }
 
-    public function getPreparationTime(): ?\DateTimeInterface
+    public function getPreparationTime(): ?string
     {
         return $this->preparation_time;
     }
 
-    public function setPreparationTime(\DateTimeInterface $preparation_time): self
+    public function setPreparationTime(string $preparation_time): self
     {
         $this->preparation_time = $preparation_time;
 
         return $this;
     }
 
-    public function getCuissonTime(): ?\DateTimeInterface
+    public function getCuissonTime(): ?string
     {
         return $this->cuisson_time;
     }
 
-    public function setCuissonTime(\DateTimeInterface $cuisson_time): self
+    public function setCuissonTime(string $cuisson_time): self
     {
         $this->cuisson_time = $cuisson_time;
 
