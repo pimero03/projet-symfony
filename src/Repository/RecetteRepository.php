@@ -19,6 +19,21 @@ class RecetteRepository extends ServiceEntityRepository
         parent::__construct($registry, Recette::class);
     }
 
+
+    public function findOneByIdJoinedToIngredients(int $recetteId)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT r, i
+            FROM App\Entity\Recette r
+            INNER JOIN r.ingredient i
+            WHERE r.id = :id'
+        )->setParameter('id', $recetteId);
+
+        return $query->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Recette[] Returns an array of Recette objects
     //  */

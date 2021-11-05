@@ -8,25 +8,37 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ recette.id }}</td>
-            </tr>
-            <tr>
                 <th>Name</th>
                 <td>{{ recette.name }}</td>
             </tr>
             <tr>
-                <th>Preparation_time</th>
+                <th>temps de preparation</th>
                 <td>{{ recette.preparationTime }}</td>
             </tr>
             <tr>
-                <th>Cuisson_time</th>
+                <th>temps de cuisson</th>
                 <td>{{ recette.cuissonTime }}</td>
             </tr>
         </tbody>
-    </table>
 
-    <a href="{{ path('recette_index') }}">back to list</a>
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                Ingrédiants
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for ingredient in recette.ingredient %}
+                    <li class="list-group-item">{{ ingredient.name }}</li>
+                {% else %}
+                    <div class="card card-block">
+                        <a href="{{ path('recette_ingredient_new', {'id': recette.id}) }}">Ajouter des ingredients</a>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </table>
+    <a href="{{ path('recette_ingredient_new', {'id': recette.id}) }}">Ajouter des ingredients</a>|
+
+    <a href="{{ path('recette_index') }}">back to list</a>|
 
     <a href="{{ path('recette_edit', {'id': recette.id}) }}">edit</a>
 
