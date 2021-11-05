@@ -36,7 +36,7 @@ class Ingredient
     private $imageName;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Recette::class, mappedBy="ingredient")
+     * @ORM\ManyToMany(targetEntity=Recette::class, mappedBy="ingredient", cascade={"persist", "remove"})
      */
     private $recettes;
 

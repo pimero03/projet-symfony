@@ -35,7 +35,7 @@ class Recette
     private $cuisson_time;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Ingredient::class, inversedBy="recettes")
+     * @ORM\ManyToMany(targetEntity=Ingredient::class, inversedBy="recettes", cascade={"persist", "remove"})
      */
     private $ingredient;
 

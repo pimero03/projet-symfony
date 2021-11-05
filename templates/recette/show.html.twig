@@ -27,7 +27,7 @@
             </div>
             <ul class="list-group list-group-flush">
                 {% for ingredient in recette.ingredient %}
-                    <li class="list-group-item">{{ ingredient.name }}</li>
+                    <li class="list-group-item">{{ ingredient.name }} => {{ ingredient.type }}</li>
                 {% else %}
                     <div class="card card-block">
                         <a href="{{ path('recette_ingredient_new', {'id': recette.id}) }}">Ajouter des ingredients</a>
