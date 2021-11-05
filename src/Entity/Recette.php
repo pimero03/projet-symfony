@@ -39,6 +39,11 @@ class Recette
      */
     private $ingredient;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Comment::class, inversedBy="recettes")
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->ingredient = new ArrayCollection();
@@ -105,6 +110,18 @@ class Recette
     public function removeIngredient(Ingredient $ingredient): self
     {
         $this->ingredient->removeElement($ingredient);
+
+        return $this;
+    }
+
+    public function getComments(): ?Comment
+    {
+        return $this->comments;
+    }
+
+    public function setComments(?Comment $comments): self
+    {
+        $this->comments = $comments;
 
         return $this;
     }
